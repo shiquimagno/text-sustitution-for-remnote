@@ -19,7 +19,7 @@ Las sugerencias están habilitadas en Ajustes de forma predeterminada. La escrit
 
 Solo el usuario opera RemNote. No distribuir este prototipo como versión final.
 
-El cargador de RemNote exige `repoUrl` incluso en desarrollo. Durante estas pruebas apunta provisionalmente al servidor local; aún no existe un repositorio público. Antes de distribuir el plugin se sustituirá por la URL real del repositorio.
+El manifiesto enlaza al repositorio público del plugin mediante `repoUrl`. Para desarrollar, RemNote carga el plugin desde el servidor local indicado en **Develop from localhost**.
 
 Después de cambios locales, recarga el plugin o RemNote: el servidor de desarrollo no usa recarga automática ni HMR. El empaquetado requiere `zip` del sistema (incluido en macOS). La auditoría y el aviso pendiente del SDK están documentados en [SECURITY.md](SECURITY.md).
 
