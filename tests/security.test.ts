@@ -2,8 +2,8 @@ import { strict as assert } from 'node:assert';
 import { test } from 'node:test';
 import { createRequire } from 'node:module';
 import { runInNewContext } from 'node:vm';
-import { execFileSync } from 'node:child_process';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { execFileSync, spawnSync } from 'node:child_process';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 const require = createRequire(import.meta.url);
@@ -41,4 +41,21 @@ test('gitignore protege secretos y generados sin excluir código ni lockfile', (
     for (const path of ignored) assert.ok(found.has(path), path);
     for (const path of tracked) assert.ok(!found.has(path), path);
   } finally { rmSync(git, { recursive: true, force: true }); }
+});
+test('el manifiesto de publicación solo acepta una URL HTTPS de repositorio de GitHub', () => {
+  const fixture = mkdtempSync(join(tmpdir(), 'remnote-release-'));
+  const manifest = JSON.parse(readFileSync('public/manifest.json', 'utf8'));
+  const script = require.resolve('../scripts/validate-development.cjs');
+  try {
+    mkdirSync(join(fixture, 'public'));
+    for (const repoUrl of ['http://127.0.0.1:8080', 'https://github.com.ejemplo.invalid/a/b', 'https://github.com/a/b/issues']) {
+      writeFileSync(join(fixture, 'public', 'manifest.json'), JSON.stringify({ ...manifest, repoUrl }));
+      const result = spawnSync(process.execPath, [script, '--release'], { cwd: fixture, encoding: 'utf8' });
+      assert.equal(result.status, 1);
+      assert.match(result.stderr, /repositorio público de GitHub/);
+    }
+    writeFileSync(join(fixture, 'public', 'manifest.json'), JSON.stringify({ ...manifest, repoUrl: 'https://github.com/example/text-substitutions' }));
+    const result = spawnSync(process.execPath, [script, '--release'], { cwd: fixture, encoding: 'utf8' });
+    assert.equal(result.status, 0, result.stderr);
+  } finally { rmSync(fixture, { recursive: true, force: true }); }
 });

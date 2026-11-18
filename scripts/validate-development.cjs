@@ -1,6 +1,7 @@
 const fs = require('node:fs');
 const assert = require('node:assert/strict');
 const { parseManifest } = require('./sdk-security.cjs').loadPatchedSdk();
+const release = process.argv.includes('--release');
 const source = fs.readFileSync('public/manifest.json', 'utf8');
 assert.ok(Buffer.byteLength(source) <= 16384, 'Development manifest exceeds 16 KiB.');
 const manifest = JSON.parse(source);
@@ -13,4 +14,8 @@ assert.equal(manifest.requestNative, false);
 assert.deepEqual(manifest.requiredScopes, [{
   type: 'DescendantsOfName', remName: 'Prueba de sustituciones', level: 'ReadCreateModify',
 }]);
-console.log('Full SDK manifest schema passed. repoUrl is a temporary loopback URL for local development; marketplace validation not completed.');
+if (release) {
+  const repositoryUrl = /^https:\/\/github\.com\/[a-z0-9-]+\/(?=[a-z0-9_.-]*[a-z0-9_-])[a-z0-9_.-]+$/i;
+  assert.ok(repositoryUrl.test(manifest.repoUrl), 'Usa en repoUrl la URL HTTPS del repositorio público de GitHub antes de generar el paquete de publicación.');
+}
+console.log('El manifiesto cumple el esquema del SDK y el alcance sandbox de la beta.');

@@ -1,6 +1,8 @@
 # Sustituciones de texto
 
-Plugin de desarrollo con catálogo personal de sustituciones y selector por abreviatura. Abre el catálogo con `/sustitutions` y guarda al menos una frase activa. Las sugerencias aparecen al escribir el prefijo y una abreviatura en un Rem de texto autorizado. De forma predeterminada, el manifiesto autoriza los descendientes de «Prueba de sustituciones».
+Guarda frases reutilizables e insértalas al escribir una abreviatura en RemNote. La beta se instala desde su enlace de RemNote una vez aprobada. Cada persona puede crear un documento llamado **Prueba de sustituciones** en su propia base para usarla. Las sugerencias aparecen en los Rems de texto dentro de ese documento.
+
+La beta solicita acceso de lectura, creación y modificación a los descendientes de ese documento. El plugin usa la modificación para sustituir el texto del Rem seleccionado. Las frases se guardan en el almacenamiento personal sincronizado de RemNote.
 
 ## Desarrollo
 
@@ -45,5 +47,5 @@ En esta versión se aceptan hasta 1000 frases de una línea y 4000 caracteres po
 
 1. Completar las comprobaciones en RemNote recogidas en [Compatibilidad del editor](docs/editor-compatibility.md). Documentar el alcance de edición que se distribuirá y probarlo con el paquete.
 2. Revisar los archivos del primer commit con `.gitignore`, publicar el código en un repositorio público de GitHub y poner su URL real en `repoUrl`.
-3. Revisar los avisos residuales y el parche del SDK en [SECURITY.md](SECURITY.md). Ejecutar `npm test`, `npm run check-types`, `npm run validate:marketplace` y `npm run build`. Comprobar el manifiesto dentro de `PluginZip.zip`.
+3. Revisar los avisos residuales y el parche del SDK en [SECURITY.md](SECURITY.md). Ejecutar `npm test`, `npm run check-types` y `npm run build:release`. Este último exige una URL HTTPS de GitHub en `repoUrl` antes de generar `PluginZip.zip`. Comprobar que el repositorio sea accesible públicamente y que el manifiesto dentro del ZIP coincida con el del código.
 4. Enviar el ZIP desde **Ajustes → Plugins → Build → Upload plugin**. La primera beta puede mantener `unlisted: true` y requiere aprobación de RemNote. [Guía de publicación](https://plugins.remnote.com/advanced/submitting_plugins) · [Plugins no listados](https://plugins.remnote.com/advanced/unlisted_plugins)
