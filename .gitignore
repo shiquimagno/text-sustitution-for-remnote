@@ -1,0 +1,55 @@
+# Dependencies and generated outputs
+/node_modules/
+/dist/
+/dist-ssr/
+/coverage/
+/.cache/
+/.npm/
+/PluginZip.zip
+*.tsbuildinfo
+
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+!.env.*.example
+.npmrc
+.netrc
+*.local
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+credentials*.json
+service-account*.json
+secrets*.json
+.secrets/
+id_rsa
+id_ed25519
+
+# Logs, exports and temporary account data
+*.log
+/logs/
+/tmp/
+/temp/
+/private/
+/backups/
+/exports/
+/test-results/
+/playwright-report/
+*.zip
+*.har
+
+# OS, editor and generated agent files
+.DS_Store
+._*
+Thumbs.db
+*.swp
+*.swo
+*~
+/.idea/
+/.vscode/
+/.agents/skills/
+
+# Commit source, package-lock.json, AGENTS.md and OpenSpec planning artifacts.

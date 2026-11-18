@@ -1,0 +1,24 @@
+{
+  "manifestVersion": 1,
+  "id": "text-substitutions",
+  "name": "Sustituciones de texto",
+  "author": "ShiquiMagno",
+  "repoUrl": "http://127.0.0.1:8080",
+  "version": {
+    "major": 0,
+    "minor": 2,
+    "patch": 8
+  },
+  "theme": [],
+  "enableOnMobile": false,
+  "description": "Sustituciones de texto con catálogo personal y abreviaturas configurables.",
+  "requestNative": false,
+  "requiredScopes": [
+    {
+      "type": "DescendantsOfName",
+      "remName": "Prueba de sustituciones",
+      "level": "ReadCreateModify"
+    }
+  ],
+  "unlisted": true
+}

@@ -1,0 +1,10 @@
+:root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+body { margin: 0; background: transparent; }
+.suggestions { padding: 14px; border: 1px solid light-dark(#dfe3e8,#42454c); border-radius: 12px; background: light-dark(#fff,#202227); color: light-dark(#20242c,#f3f4f6); font-size: 14px; }
+.eyebrow { font-size: 10px; letter-spacing: .12em; opacity: .6; margin-bottom: 10px; }
+.option { display: flex; justify-content: space-between; gap: 8px; padding: 9px 10px; border-radius: 7px; }
+.option-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.option.selected { background: light-dark(#eef1ff,#343c60); }
+small { opacity: .55; }
+.preview { border-top: 1px solid light-dark(#e5e7eb,#42454c); margin-top: 10px; padding: 14px 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+footer { font-size: 11px; opacity: .65; }
